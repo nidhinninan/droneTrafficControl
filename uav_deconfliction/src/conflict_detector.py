@@ -187,62 +187,73 @@ def check_multiple_missions(primary_mission: Mission, other_missions: List[Missi
 # TEMPORAL CONFLICT DETECTION - FUTURE IMPLEMENTATION PLACEHOLDER
 # ============================================================================
 
-def check_trajectory_conflict_with_temporal(mission1: Mission, mission2: Mission, safety_buffer: float, num_samples: int = 100) -> Optional[Conflict]:
+def check_trajectory_conflict_with_temporal(mission1: Mission, mission2: Mission, safety_buffer: float, temporal_tolerance: float = 0.5, num_samples: int = 100) -> Optional[Conflict]:
     """
-    FUTURE IMPLEMENTATION: Spatial + Temporal Conflict Detection
+    Checks for SPATIOTEMPORAL conflict between two missions.
     
-    This function will extend check_trajectory_conflict() to include temporal reasoning.
-    It will verify that trajectories not only come close in space, but also that
-    both drones are present at the conflict location at overlapping times.
+    A conflict is reported ONLY if:
+    1. Spatial separation < safety_buffer
+    2. Temporal separation at that point < temporal_tolerance
     
-    Planned implementation approach:
-    - Generate trajectory curves as in check_trajectory_conflict()
-    - Find spatial closest approach
-    - If spatial conflict exists:
-        * Calculate when drone 1 reaches the conflict point (using waypoint timestamps)
-        * Calculate when drone 2 reaches the conflict point
-        * Check if these time windows overlap
-        * Only report conflict if BOTH spatial AND temporal violations occur
-    
-    Parameters:
-        mission1 (Mission): First mission with timestamped waypoints
-        mission2 (Mission): Second mission with timestamped waypoints
-        safety_buffer (float): Minimum required separation distance
-        num_samples (int): Trajectory sampling density
-    
+    Args:
+        mission1: First mission.
+        mission2: Second mission.
+        safety_buffer: Min spatial separation (meters).
+        temporal_tolerance: Min temporal separation (seconds) to be considered 'simultaneous'.
+        num_samples: Sampling density.
+        
     Returns:
-        Optional[Conflict]: Conflict object if both spatial and temporal violation,
-                           None if trajectories are separated in space OR time
-    
-    TODO:
-    - Implement time-parameterization of spline curves
-    - Calculate velocity profiles along trajectories
-    - Determine when each drone reaches closest approach point
-    - Check temporal overlap with appropriate tolerance
-    - Update Conflict.conflict_time with actual collision time
+        Conflict object if both conditions met, else None.
     """
-    raise NotImplementedError("Temporal conflict detection not yet implemented")
+    # 1. Spatial Pre-check (Fast)
+    if safety_buffer <= 0:
+        return None
+    if len(mission1.waypoints) < 2 or len(mission2.waypoints) < 2:
+        return None
 
-def calculate_time_at_curve_parameter(waypoints: List[Waypoint], tck: Any, u_value: float) -> float:
-    """
-    FUTURE HELPER FUNCTION: Calculate timestamp for curve parameter
+    try:
+        tck1, _ = geometry_utils.create_trajectory_curve(mission1.waypoints)
+        tck2, _ = geometry_utils.create_trajectory_curve(mission2.waypoints)
+    except Exception as e:
+        print(f"Error creating trajectories: {e}")
+        return None
+
+    # 2. Find Spatial Closest Approach
+    min_dist, p1, p2, u1, u2 = geometry_utils.closest_approach_between_curves(tck1, tck2, num_samples)
     
-    Given a curve parameter u_value (0 to 1), determine what timestamp
-    corresponds to that position along the trajectory.
+    # If spatially safe, return None immediately
+    if not geometry_utils.violates_safety_buffer(min_dist, safety_buffer):
+        return None
+        
+    # 3. Temporal Check
+    # Estimate time at the point of closest approach
+    t1 = geometry_utils.estimate_time_at_parameter(u1, mission1.waypoints)
+    t2 = geometry_utils.estimate_time_at_parameter(u2, mission2.waypoints)
     
-    Approach:
-    - Waypoints have timestamps defining when drone passes each waypoint
-    - Need to interpolate timestamps based on curve position
-    - May need to account for velocity variations between waypoints
+    time_diff = abs(t1 - t2)
     
-    Parameters:
-        waypoints (List[Waypoint]): Waypoints with timestamp attributes
-        tck: Spline representation of trajectory
-        u_value (float): Curve parameter in [0, 1]
+    if time_diff >= temporal_tolerance:
+        # Spatially close, but separated by time -> SAFE
+        return None
+        
+    # 4. Conflict Confirmed
+    conflict_loc = (float(p1[0]), float(p1[1]), float(p1[2]))
     
-    Returns:
-        float: Timestamp when drone reaches the curve position u_value
+    description = (
+        f"SPATIOTEMPORAL CONFLICT DETECTED\n"
+        f"    Missions: {mission1.mission_id} <-> {mission2.mission_id}\n"
+        f"    Location: ({conflict_loc[0]:.2f}, {conflict_loc[1]:.2f}, {conflict_loc[2]:.2f})\n"
+        f"    Spatial Separation: {min_dist:.2f} m\n"
+        f"    Time Difference: {time_diff:.2f} s (Tolerance: {temporal_tolerance}s)\n"
+    )
     
-    TODO: Implement timestamp interpolation logic
-    """
-    raise NotImplementedError("Temporal parameterization not yet implemented")
+    conflict = Conflict(
+        mission_ids=(mission1.mission_id, mission2.mission_id),
+        conflict_location=conflict_loc,
+        conflict_time=t1, # Time of occurrence for mission 1
+        separation_distance=float(min_dist),
+        safety_buffer=safety_buffer,
+        description=description
+    )
+    
+    return conflict

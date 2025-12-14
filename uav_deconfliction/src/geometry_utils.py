@@ -192,6 +192,51 @@ def calculate_trajectory_length(tck, num_samples: int = 1000) -> float:
     segment_lengths = np.linalg.norm(diffs, axis=1)
     return float(np.sum(segment_lengths))
 
+def estimate_time_at_parameter(u: float, waypoints: List[Waypoint]) -> float:
+    """
+    Estimates the timestamp at a specific curve parameter u.
+    
+    This maps the splines parameter u (0.0 to 1.0) to the mission timeline by
+    assuming that u scales linearly with the waypoint indices. This is a common
+    assumption when splines are generated with uniform weights.
+    
+    Args:
+        u: The B-spline parameter value (0.0 to 1.0).
+        waypoints: List of Waypoint objects containing timestamps.
+        
+    Returns:
+        Estimated timestamp (float).
+    """
+    if not waypoints:
+        return 0.0
+        
+    num_waypoints = len(waypoints)
+    if num_waypoints < 2:
+        return waypoints[0].timestamp
+        
+    # Clamp u to [0, 1] to handle slight numerical overshoot
+    u = max(0.0, min(1.0, u))
+    
+    # Scale u to find which segment index it falls into
+    # with N points, we have N-1 segments
+    # e.g., if 4 waypoints, u=0.0 -> idx=0, u=0.33 -> idx=1 ...
+    num_segments = num_waypoints - 1
+    scaled_u = u * num_segments
+    
+    idx = int(scaled_u)
+    
+    # Handle the exact end case u=1.0 where idx might equal len-1
+    if idx >= num_segments:
+        return waypoints[-1].timestamp
+        
+    # Get fractional part for linear interpolation within the segment
+    frac = scaled_u - idx
+    
+    t_start = waypoints[idx].timestamp
+    t_end = waypoints[idx+1].timestamp
+    
+    return t_start + frac * (t_end - t_start)
+
 # ==========================================
 # TEST AND VISUALIZATION FUNCTIONS
 # ==========================================

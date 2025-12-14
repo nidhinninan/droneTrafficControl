@@ -11,9 +11,7 @@ Current Capabilities:
 - Report Generation: Creates detailed human-readable validation reports.
 - Data Export: Supports JSON, CSV, and text export of validation results.
 - Batch Processing: Validation of multiple missions against traffic.
-
-Future Enhancements:
-- Temporal Deconfliction: Time-based safety logic (currently placeholders).
+- Temporal Deconfliction: Time-based safety logic.
 """
 
 from typing import List, Tuple, Optional, Dict, Any
@@ -197,8 +195,9 @@ def generate_validation_report(primary_mission: Mission, conflicts: List[Conflic
         report.append("- Contact air traffic coordination for assistance")
     
     report.append("")
-    report.append("NOTE: This report reflects SPATIAL analysis only. Temporal deconfliction")
-    report.append("      (time-based separation) has not been implemented yet.")
+    report.append("")
+    report.append("NOTE: This report includes TEMPORAL analysis.")
+    report.append("      Conflicts are only reported if trajectories intersect in both SPACE and TIME.")
     report.append("=" * 80)
     
     return "\n".join(report)
@@ -365,45 +364,62 @@ def batch_validate_missions(missions_to_validate: List[Mission], existing_traffi
 # TEMPORAL VALIDATION - FUTURE IMPLEMENTATION PLACEHOLDER
 # ============================================================================
 
-def validate_mission_with_temporal(primary_mission: Mission, other_missions: List[Mission], safety_buffer: float = 5.0, num_samples: int = 100):
-   """
-   FUTURE IMPLEMENTATION: Mission Validation with Temporal Deconfliction
-   
-   This function will extend validate_mission() to include temporal reasoning.
-   It will ensure that missions are not only spatially separated, but also
-   that drones don't occupy the same space at the same time.
-   
-   Planned approach:
-   - Perform spatial conflict detection as in validate_mission()
-   - For each spatial conflict detected:
-       * Calculate when primary mission drone reaches conflict location
-       * Calculate when other mission drone reaches conflict location
-       * Check if these time windows overlap
-       * Only report conflict if BOTH spatial AND temporal violations occur
-   - This will allow missions with crossing paths that are temporally separated
-   
-   Parameters:
-       primary_mission (Mission): Mission to validate with timestamped waypoints
-       other_missions (List[Mission]): Existing traffic with timestamps
-       safety_buffer (float): Minimum spatial separation required
-       num_samples (int): Trajectory sampling density
-   
-   Returns:
-       Tuple[bool, List[Conflict], str]: Same as validate_mission but with
-                                         temporal conflicts only
-   
-   Key differences from spatial-only validation:
-   - Fewer conflicts detected (temporal separation filters out some)
-   - Conflict objects include accurate conflict_time values
-   - Report indicates both spatial and temporal analysis completed
-   
-   TODO:
-   - Integrate conflict_detector.check_trajectory_conflict_with_temporal()
-   - Update report generation to show temporal conflict details
-   - Add time-based conflict categorization
-   - Consider mission time window constraints (start_time, end_time)
-   """
-   raise NotImplementedError("Temporal validation not yet implemented")
+def validate_mission_with_temporal(primary_mission: Mission, other_missions: List[Mission], safety_buffer: float = 5.0, temporal_tolerance: float = 0.5, num_samples: int = 100, verbose: bool = False) -> Tuple[bool, List[Conflict], str]:
+    """
+    Validates mission using FULL SPATIOTEMPORAL deconfliction.
+    
+    Args:
+        primary_mission: Mission to validate.
+        other_missions: Background traffic.
+        safety_buffer: Min spatial separation (meters).
+        temporal_tolerance: Min temporal separation (seconds).
+        num_samples: Sampling density.
+        verbose: Print progress.
+        
+    Returns:
+        (is_clear, conflicts, report)
+    """
+    # [Logic mirrors validate_mission but calls check_trajectory_conflict_with_temporal]
+    
+    # a. INPUT VALIDATION
+    if not primary_mission or len(primary_mission.waypoints) < 2:
+        return (False, [], "Invalid primary mission.")
+    if safety_buffer <= 0:
+        return (False, [], "Safety buffer must be positive.")
+
+    if verbose:
+        print(f"Validating {primary_mission.mission_id} (SPATIOTEMPORAL) against {len(other_missions)} traffic missions...")
+
+    # b. TRAJECTORY CHECK
+    try:
+        _ = geometry_utils.create_trajectory_curve(primary_mission.waypoints)
+    except Exception as e:
+        return (False, [], f"Trajectory generation failed: {e}")
+
+    # c. CONFLICT DETECTION
+    conflicts = []
+    active_traffic = [m for m in other_missions if m.mission_id != primary_mission.mission_id]
+
+    for i, other in enumerate(active_traffic):
+        if verbose:
+            print(f"Checking {primary_mission.mission_id} vs {other.mission_id}...")
+        try:
+            conflict = conflict_detector.check_trajectory_conflict_with_temporal(
+                primary_mission, other, safety_buffer, temporal_tolerance, num_samples
+            )
+            if conflict:
+                conflicts.append(conflict)
+        except Exception as e:
+            print(f"Error checking {other.mission_id}: {e}")
+
+    if verbose:
+        print(f"Found {len(conflicts)} spatiotemporal conflicts.")
+
+    # d. STATUS AND REPORT
+    is_clear = (len(conflicts) == 0)
+    summary_report = generate_validation_report(primary_mission, conflicts, is_clear)
+    
+    return (is_clear, conflicts, summary_report)
 
 def find_earliest_conflict(conflicts: List[Conflict]) -> Optional[Conflict]:
    """

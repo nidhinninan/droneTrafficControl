@@ -372,7 +372,9 @@ def visualize_test_scenario(missions: List[Mission], title: str = "Test Scenario
             loc = c.conflict_location
             ax.scatter([loc[0]], [loc[1]], [loc[2]], color='red', s=200, marker='X', zorder=100, label='Conflict')
             if len(conflicts) <= 5: # Avoid clutter if too many
-                ax.text(loc[0], loc[1], loc[2]+5, f"{c.separation_distance:.1f}m", color='red')
+                # Show separation and time if available
+                time_str = f"\nt={c.conflict_time:.2f}s" if c.conflict_time is not None else ""
+                ax.text(loc[0], loc[1], loc[2]+5, f"{c.separation_distance:.1f}m{time_str}", color='red')
     
     ax.set_title(title)
     ax.set_xlabel('X (m)')
@@ -398,35 +400,30 @@ def visualize_test_scenario(missions: List[Mission], title: str = "Test Scenario
 # TEMPORAL TEST DATA GENERATION - FUTURE IMPLEMENTATION PLACEHOLDER
 # ============================================================================
 
-def generate_temporally_separated_missions(spatial_path_type: str = "crossing"):
+def generate_temporally_separated_missions(spatial_path_type: str = "crossing") -> Tuple[Mission, Mission]:
     """
-    FUTURE IMPLEMENTATION: Generate missions with realistic timestamps
+    Creates two missions that cross paths in space but are separated in time.
     
-    This function will create missions that cross spatially but are separated
-    in time, demonstrating temporal deconfliction.
+    1. Generates standard crossing missions.
+    2. Adjusts Mission B waypoints so its timestamps start 20 seconds LATER.
     
-    Planned approach:
-    - Generate two missions with crossing spatial paths (like generate_crossing_missions_3d)
-    - Assign realistic timestamps to waypoints based on:
-      * Mission start times (offset by delay)
-      * Drone velocity profiles
-      * Waypoint spacing
-    - Mission B starts after Mission A completes crossing region
-    
-    Parameters:
-        spatial_path_type (str): Type of crossing pattern ("crossing", "parallel", etc.)
-    
-    Returns:
-        Tuple[Mission, Mission]: Two missions that cross spatially but not temporally
-    
-    Expected behavior (when temporal analysis implemented):
-    - Spatial analysis alone would detect conflict
-    - Temporal analysis would show no conflict (time-separated)
-    - Demonstrates need for 4D spatiotemporal reasoning
-    
-    TODO: Implement realistic timestamp calculation along trajectories
+    This ensures that while their lines intersect, the drones are never there at the same time.
     """
-    raise NotImplementedError("Temporal test data generation not yet implemented")
+    # Reuse spatial logic
+    m1, m2 = generate_crossing_missions_3d()
+    
+    # modify m2 waypoints to have delayed timestamps
+    # m1 takes roughly 10s (index based). 
+    # If we delay m2 by 20s, it enters when m1 is long gone.
+    time_offset = 20.0 
+    
+    for wp in m2.waypoints:
+        wp.timestamp += time_offset
+        
+    m1.mission_id = "TEMP_SAFE_1"
+    m2.mission_id = "TEMP_SAFE_2_DELAYED"
+    
+    return m1, m2
 
 if __name__ == "__main__":
     # Simple self-test if run directly
