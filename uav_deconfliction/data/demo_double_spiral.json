@@ -1,0 +1,103 @@
+{
+    "safety_buffer_m": 5.0,
+    "temporal_tolerance_s": 2.0,
+    "fps": 20,
+    "missions": [
+        {
+            "mission_id": "Drone_A",
+            "description": "Drone A flies from bottom-left to top-right, crossing center at t=15s",
+            "waypoints": [
+                {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 30.0,
+                    "timestamp": 0.0
+                },
+                {
+                    "x": 20.0,
+                    "y": 20.0,
+                    "z": 35.0,
+                    "timestamp": 5.0
+                },
+                {
+                    "x": 40.0,
+                    "y": 40.0,
+                    "z": 40.0,
+                    "timestamp": 10.0
+                },
+                {
+                    "x": 55.0,
+                    "y": 55.0,
+                    "z": 45.0,
+                    "timestamp": 15.0
+                },
+                {
+                    "x": 70.0,
+                    "y": 70.0,
+                    "z": 50.0,
+                    "timestamp": 20.0
+                },
+                {
+                    "x": 85.0,
+                    "y": 85.0,
+                    "z": 55.0,
+                    "timestamp": 25.0
+                },
+                {
+                    "x": 100.0,
+                    "y": 100.0,
+                    "z": 50.0,
+                    "timestamp": 30.0
+                }
+            ]
+        },
+        {
+            "mission_id": "Drone_B",
+            "description": "Drone B flies from bottom-right to top-left, crossing center at t=15s (CONFLICT!)",
+            "waypoints": [
+                {
+                    "x": 100.0,
+                    "y": 0.0,
+                    "z": 30.0,
+                    "timestamp": 0.0
+                },
+                {
+                    "x": 80.0,
+                    "y": 20.0,
+                    "z": 35.0,
+                    "timestamp": 5.0
+                },
+                {
+                    "x": 65.0,
+                    "y": 40.0,
+                    "z": 40.0,
+                    "timestamp": 10.0
+                },
+                {
+                    "x": 55.0,
+                    "y": 55.0,
+                    "z": 45.0,
+                    "timestamp": 15.0
+                },
+                {
+                    "x": 40.0,
+                    "y": 70.0,
+                    "z": 50.0,
+                    "timestamp": 20.0
+                },
+                {
+                    "x": 20.0,
+                    "y": 85.0,
+                    "z": 55.0,
+                    "timestamp": 25.0
+                },
+                {
+                    "x": 0.0,
+                    "y": 100.0,
+                    "z": 50.0,
+                    "timestamp": 30.0
+                }
+            ]
+        }
+    ]
+}

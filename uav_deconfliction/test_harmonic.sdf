@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <world name="drone_traffic_world">
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+    <plugin filename="gz-sim-particle-emitter2-system" name="gz::sim::systems::ParticleEmitter2" />
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+    </physics>
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>500 500</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>500 500</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="drone_TEMP_SAFE_1">
+      <pose>1.1016497455536764e-16 0.0 50.0 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.0 1.0 1</ambient>
+            <diffuse>0.5 0.0 1.0 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.001</ixx>
+            <iyy>0.001</iyy>
+            <izz>0.001</izz>
+          </inertia>
+        </inertial>
+        <particle_emitter name="trail_emitter" type="box">
+          <emitting>true</emitting>
+          <size>0.1 0.1 0.1</size>
+          <particle_size>0.1 0.1 0.1</particle_size>
+          <lifetime>5.0</lifetime>
+          <min_velocity>0.0</min_velocity>
+          <max_velocity>0.0</max_velocity>
+          <scale_rate>0</scale_rate>
+          <rate>20</rate>
+          <material>
+            <diffuse>0 1 0 1</diffuse>
+            <ambient>0 1 0 1</ambient>
+          </material>
+        </particle_emitter>
+      </link>
+      <plugin name="gazebo::TrajectoryPlayer" filename="trajectory_player_plugin">
+        <position_file>/tmp/gazebo_drone_positions/drone_TEMP_SAFE_1.txt</position_file>
+        <update_rate>30</update_rate>
+      </plugin>
+    </model>
+    <model name="drone_TEMP_SAFE_2_DELAYED">
+      <pose>50.0 -50.0 50.0 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.503921568627451 0.9999810273487268 0.7049255469061472 1</ambient>
+            <diffuse>0.503921568627451 0.9999810273487268 0.7049255469061472 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.001</ixx>
+            <iyy>0.001</iyy>
+            <izz>0.001</izz>
+          </inertia>
+        </inertial>
+        <particle_emitter name="trail_emitter" type="box">
+          <emitting>true</emitting>
+          <size>0.1 0.1 0.1</size>
+          <particle_size>0.1 0.1 0.1</particle_size>
+          <lifetime>5.0</lifetime>
+          <min_velocity>0.0</min_velocity>
+          <max_velocity>0.0</max_velocity>
+          <scale_rate>0</scale_rate>
+          <rate>20</rate>
+          <material>
+            <diffuse>0 1 0 1</diffuse>
+            <ambient>0 1 0 1</ambient>
+          </material>
+        </particle_emitter>
+      </link>
+      <plugin name="gazebo::TrajectoryPlayer" filename="trajectory_player_plugin">
+        <position_file>/tmp/gazebo_drone_positions/drone_TEMP_SAFE_2_DELAYED.txt</position_file>
+        <update_rate>30</update_rate>
+      </plugin>
+    </model>
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>50.0 -105.0 110.0 0 0.6 1.57</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+  </world>
+</sdf>
