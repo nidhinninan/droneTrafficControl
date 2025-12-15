@@ -66,16 +66,46 @@ Results (report JSON and 3D visualization) are saved to the specified output dir
 
 All tests passed successfully.
 
-## Gazebo Harmonic Integration
+## Visualization
 
-**New in version 2.0:** The project now supports 3D visualization using **Gazebo Harmonic (`gz-sim`)**.
+### Matplotlib Animation (Recommended)
 
-### Features
-- **Dynamic Playback**: Visualizes drone trajectories from mission data.
-- **Green Trails**: Drones leave a green particle trail to show their path.
-- **Conflict Warning**: Drones turn **RED** automatically when a spatiotemporal conflict is detected.
+The primary visualization is a self-contained Matplotlib 3D animation that demonstrates the deconfliction system.
 
-### Setup
+**Features:**
+- Dynamic 3D playback of drone trajectories
+- Green trails showing flight paths
+- **Automatic red warning** when conflict is detected
+- Conflict marker and timestamp displayed
+- GIF export for easy sharing
+
+**Usage:**
+```bash
+cd uav_deconfliction
+python src/simple_viz.py
+```
+
+This will:
+1. Load the scenario from `data/demo_double_spiral.json`
+2. Detect conflicts using spatiotemporal analysis
+3. Display an animated 3D plot
+4. Export animation to `outputs/demo_conflict.gif`
+
+---
+
+### Gazebo Harmonic Integration (Experimental)
+
+> [!WARNING]
+> The Gazebo integration is currently **experimental and buggy**. Known issues include:
+> - Trajectory visibility problems (drones may not render correctly)
+> - Coordinate system mismatches between mission data and Gazebo world
+> - Camera positioning issues making it difficult to view trajectories
+> 
+> **Recommendation:** Use the Matplotlib demo above for reliable visualization.
+
+The Gazebo plugin files have been moved to `dev/gazebo_legacy/` for future development.
+
+#### Original Setup (for reference)
 1. **Compile the Plugin**:
    ```bash
    cd uav_deconfliction/gazebo_plugins/trajectory_player/build
@@ -84,14 +114,8 @@ All tests passed successfully.
    cd ../../../..
    ```
 
-### Usage
-Generate a world file and run the simulation:
-
-```bash
-# 1. Generate World (creates .sdf file with drones and particle emitters)
-python3 uav_deconfliction/src/gazebo_bridge.py --missions uav_deconfliction/data/missions.json --generate-world demoworld.sdf
-
-# 2. Run Playback
-# Use --speed to control playback rate (e.g., 0.1 for slow motion)
-python3 uav_deconfliction/src/gazebo_trajectory_player.py --world demoworld.sdf --missions uav_deconfliction/data/missions.json --speed 0.5
-```
+2. **Run Simulation**:
+   ```bash
+   python3 uav_deconfliction/src/gazebo_bridge.py --missions uav_deconfliction/data/missions.json --generate-world demoworld.sdf
+   python3 uav_deconfliction/src/gazebo_trajectory_player.py --world demoworld.sdf --missions uav_deconfliction/data/missions.json --speed 0.5
+   ```
