@@ -1,0 +1,9 @@
+# Flexible input (JSON string containing raw waypoints/metadata)
+string input_json
+---
+# Validation status
+bool success
+string message
+
+# Normalized Deconfliction-ready Mission JSON
+string normalized_mission_json

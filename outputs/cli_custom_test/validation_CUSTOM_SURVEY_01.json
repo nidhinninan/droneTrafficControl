@@ -1,0 +1,23 @@
+{
+  "mission_status": "REJECTED",
+  "is_clear": false,
+  "num_conflicts": 1,
+  "conflicts": [
+    {
+      "mission_ids": [
+        "CUSTOM_SURVEY_01",
+        "TRAFFIC_PATROL_A"
+      ],
+      "location": [
+        51.45137923978098,
+        -24.691216434931004,
+        50.633383970500425
+      ],
+      "separation_distance": 1.8486462191120767,
+      "safety_buffer": 5.0,
+      "violation_margin": 3.1513537808879235,
+      "description": "SPATIAL CONFLICT DETECTED\n    Missions: CUSTOM_SURVEY_01 <-> TRAFFIC_PATROL_A\n    Closest Approach Location: (51.45, -24.69, 50.63) meters\n    Actual Separation: 1.85 m\n    Required Safety Buffer: 5.00 m\n    Violation Margin: 3.15 m\n    \n    Note: Temporal analysis not implemented - conflict location represents spatial closest approach only."
+    }
+  ],
+  "summary": "================================================================================\nUAV STRATEGIC DECONFLICTION - MISSION VALIDATION REPORT\n================================================================================\n\nPRIMARY MISSION: CUSTOM_SURVEY_01\nWaypoints: 4\nTrajectory Length: 336.38 meters\n\nVALIDATION STATUS: \u2717 REJECTED\n\nCONFLICT SUMMARY:\nTotal Conflicts Detected: 1\nSpatial conflicts detected - mission cannot proceed as planned\n\nCONFLICT #1:\nSPATIAL CONFLICT DETECTED\n    Missions: CUSTOM_SURVEY_01 <-> TRAFFIC_PATROL_A\n    Closest Approach Location: (51.45, -24.69, 50.63) meters\n    Actual Separation: 1.85 m\n    Required Safety Buffer: 5.00 m\n    Violation Margin: 3.15 m\n    \n    Note: Temporal analysis not implemented - conflict location represents spatial closest approach only.\n---\n\nRECOMMENDATIONS:\n- Modify mission waypoints to avoid conflict zones\n- Consider altitude adjustments if conflicts are near same Z-level\n- Reschedule mission (temporal deconfliction not yet implemented)\n- Contact air traffic coordination for assistance\n\nNOTE: This report reflects SPATIAL analysis only. Temporal deconfliction\n      (time-based separation) has not been implemented yet.\n================================================================================"
+}

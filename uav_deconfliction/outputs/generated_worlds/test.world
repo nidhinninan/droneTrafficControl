@@ -1,0 +1,1407 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.6">
+  <world name="test_world_gen">
+    <physics type="ode">
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+    </physics>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <model name="reference_grid">
+      <static>1</static>
+      <link name="link">
+        <visual name="line_x_0">
+          <pose>0 -250.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_0">
+          <pose>-250.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_1">
+          <pose>0 -240.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_1">
+          <pose>-240.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_2">
+          <pose>0 -230.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_2">
+          <pose>-230.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_3">
+          <pose>0 -220.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_3">
+          <pose>-220.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_4">
+          <pose>0 -210.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_4">
+          <pose>-210.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_5">
+          <pose>0 -200.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_5">
+          <pose>-200.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_6">
+          <pose>0 -190.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_6">
+          <pose>-190.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_7">
+          <pose>0 -180.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_7">
+          <pose>-180.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_8">
+          <pose>0 -170.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_8">
+          <pose>-170.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_9">
+          <pose>0 -160.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_9">
+          <pose>-160.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_10">
+          <pose>0 -150.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_10">
+          <pose>-150.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_11">
+          <pose>0 -140.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_11">
+          <pose>-140.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_12">
+          <pose>0 -130.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_12">
+          <pose>-130.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_13">
+          <pose>0 -120.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_13">
+          <pose>-120.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_14">
+          <pose>0 -110.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_14">
+          <pose>-110.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_15">
+          <pose>0 -100.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_15">
+          <pose>-100.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_16">
+          <pose>0 -90.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_16">
+          <pose>-90.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_17">
+          <pose>0 -80.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_17">
+          <pose>-80.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_18">
+          <pose>0 -70.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_18">
+          <pose>-70.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_19">
+          <pose>0 -60.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_19">
+          <pose>-60.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_20">
+          <pose>0 -50.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_20">
+          <pose>-50.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_21">
+          <pose>0 -40.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_21">
+          <pose>-40.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_22">
+          <pose>0 -30.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_22">
+          <pose>-30.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_23">
+          <pose>0 -20.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_23">
+          <pose>-20.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_24">
+          <pose>0 -10.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_24">
+          <pose>-10.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_25">
+          <pose>0 0.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_25">
+          <pose>0.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_26">
+          <pose>0 10.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_26">
+          <pose>10.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_27">
+          <pose>0 20.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_27">
+          <pose>20.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_28">
+          <pose>0 30.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_28">
+          <pose>30.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_29">
+          <pose>0 40.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_29">
+          <pose>40.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_30">
+          <pose>0 50.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_30">
+          <pose>50.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_31">
+          <pose>0 60.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_31">
+          <pose>60.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_32">
+          <pose>0 70.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_32">
+          <pose>70.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_33">
+          <pose>0 80.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_33">
+          <pose>80.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_34">
+          <pose>0 90.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_34">
+          <pose>90.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_35">
+          <pose>0 100.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_35">
+          <pose>100.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_36">
+          <pose>0 110.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_36">
+          <pose>110.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_37">
+          <pose>0 120.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_37">
+          <pose>120.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_38">
+          <pose>0 130.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_38">
+          <pose>130.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_39">
+          <pose>0 140.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_39">
+          <pose>140.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_40">
+          <pose>0 150.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_40">
+          <pose>150.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_41">
+          <pose>0 160.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_41">
+          <pose>160.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_42">
+          <pose>0 170.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_42">
+          <pose>170.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_43">
+          <pose>0 180.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_43">
+          <pose>180.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_44">
+          <pose>0 190.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_44">
+          <pose>190.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_45">
+          <pose>0 200.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_45">
+          <pose>200.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_46">
+          <pose>0 210.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_46">
+          <pose>210.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_47">
+          <pose>0 220.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_47">
+          <pose>220.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_48">
+          <pose>0 230.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_48">
+          <pose>230.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_49">
+          <pose>0 240.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_49">
+          <pose>240.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_x_50">
+          <pose>0 250.0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="line_y_50">
+          <pose>250.0 0 0.01 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>500.0 0.05 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="drone_Gen_A">
+      <pose>1.1016497455536764e-16 0.0 50.0 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://quadrotor/meshes/quadrotor.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.5 0.0 1.0 1</ambient>
+            <diffuse>0.5 0.0 1.0 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.001</ixx>
+            <iyy>0.001</iyy>
+            <izz>0.001</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="trajectory_player" filename="libgazebo_ros_trajectory_player.so">
+        <trajectory_data>Gen_A</trajectory_data>
+      </plugin>
+    </model>
+    <model name="drone_Gen_B">
+      <pose>50.0 -50.0 50.0 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://quadrotor/meshes/quadrotor.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.503921568627451 0.9999810273487268 0.7049255469061472 1</ambient>
+            <diffuse>0.503921568627451 0.9999810273487268 0.7049255469061472 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.001</ixx>
+            <iyy>0.001</iyy>
+            <izz>0.001</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="trajectory_player" filename="libgazebo_ros_trajectory_player.so">
+        <trajectory_data>Gen_B</trajectory_data>
+      </plugin>
+    </model>
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>50.0 -105.0 110.0 0 0.6 1.57</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+  </world>
+</sdf>

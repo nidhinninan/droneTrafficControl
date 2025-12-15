@@ -1,0 +1,58 @@
+# Drone Deconfliction Project Analysis
+
+## 1. Waypoint Data Format
+The project uses a **JSON-based** format for defining missions and waypoints.
+- **File Structure**: A root object containing global settings (`safety_buffer_m`, `temporal_tolerance_s`) and a list of [missions](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/mission_validator.py#338-361).
+- **Waypoint Object**:
+  ```json
+  {
+      "x": float,
+      "y": float,
+      "z": float,
+      "timestamp": float  // aliases: "t"
+  }
+  ```
+- **Example Source**: [uav_deconfliction/data/demo_double_spiral.json](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/data/demo_double_spiral.json)
+
+## 2. Main Entry Points
+Data consumption primarily occurs through these functions:
+
+### [main.py](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/main.py)
+- **[load_mission_from_json(filepath)](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/main.py#99-132)**: Loads a single [Mission](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#25-98) object from a JSON file.
+- **[load_traffic_from_json(filepath)](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/main.py#133-155)**: Loads a list of background [Mission](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#25-98) objects.
+- **[run_scenario(scenario_name, ...)](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/main.py#156-218)**: Generates [Mission](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#25-98) objects programmatically via [test_data_generator.py](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/test_data_generator.py).
+
+### [src/simple_viz.py](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/simple_viz.py)
+- **[load_scenario(json_path)](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/simple_viz.py#36-52)**: Loads a full scenario (missions + settings) into a dictionary for visualization.
+
+## 3. Data Structures
+Core structures are defined in [src/data_models.py](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py):
+
+- **[Waypoint](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#4-23) (dataclass)**
+  - Attributes: `x`, `y`, `z`, `timestamp`
+  - Represents a 4D point in space-time.
+
+- **[Mission](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#25-98) (class)**
+  - Attributes: `mission_id`, `waypoints` (List[Waypoint]), `start_time`, `end_time`
+  - Encapsulates the flight plan.
+
+- **[Conflict](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#100-137) (dataclass)**
+  - Attributes: `mission_ids`, `conflict_location`, `conflict_time`, `separation_distance`
+  - Represents a detailed safety violation.
+
+## 4. Interface Patterns
+- **Mission-Centric Design**: The [Mission](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#25-98) object is the primary currency passed between modules.
+- **Conflict Detection**:
+  - `conflict_detector.check_trajectory_conflict(...)` -> Spatial only.
+  - `conflict_detector.check_trajectory_conflict_with_temporal(...)` -> Spatiotemporal (checked if spatial overlap exists).
+- **Validation**:
+  - `mission_validator.validate_mission(...)` orchestrates checks against a list of traffic.
+- **Geometry**:
+  - `geometry_utils` consumes raw waypoints to generate B-spline representations (`tck` tuples) for smooth path calculations.
+
+## Summary of Data Flow
+1. **Input**: JSON files or programmatic generation.
+2. **Parsing**: [main.py](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/main.py) or [simple_viz.py](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/simple_viz.py) converts input -> [Mission](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#25-98) objects (containing [Waypoint](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#4-23)s).
+3. **Processing**: `conflict_detector` takes [Mission](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#25-98) pairs -> uses `geometry_utils` to convert [Waypoint](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#4-23)s to B-splines -> calculates closest approach.
+4. **Validation**: `mission_validator` aggregates results into [Conflict](file:///home/nidhinninan/.gemini/antigravity/playground/Flytbase_proect/uav_deconfliction/src/data_models.py#100-137) objects.
+5. **Output**: Text reports, JSON dumps of conflicts, or 3D/Matplotlib visualizations.
