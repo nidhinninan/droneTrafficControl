@@ -85,6 +85,8 @@ cd uav_deconfliction
 python src/simple_viz.py
 ```
 
+![Demo Animation](uav_deconfliction/outputs/demo_conflict.gif)
+
 This will:
 1. Load the scenario from `data/demo_double_spiral.json`
 2. Detect conflicts using spatiotemporal analysis
