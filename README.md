@@ -65,3 +65,33 @@ Results (report JSON and 3D visualization) are saved to the specified output dir
 - `test_spatiotemporal_conflict`: Verifies that missions crossing in space AND time are **REJECTED**.
 
 All tests passed successfully.
+
+## Gazebo Harmonic Integration
+
+**New in version 2.0:** The project now supports 3D visualization using **Gazebo Harmonic (`gz-sim`)**.
+
+### Features
+- **Dynamic Playback**: Visualizes drone trajectories from mission data.
+- **Green Trails**: Drones leave a green particle trail to show their path.
+- **Conflict Warning**: Drones turn **RED** automatically when a spatiotemporal conflict is detected.
+
+### Setup
+1. **Compile the Plugin**:
+   ```bash
+   cd uav_deconfliction/gazebo_plugins/trajectory_player/build
+   cmake .. && make
+   export GZ_SIM_SYSTEM_PLUGIN_PATH=${GZ_SIM_SYSTEM_PLUGIN_PATH}:$(pwd)
+   cd ../../../..
+   ```
+
+### Usage
+Generate a world file and run the simulation:
+
+```bash
+# 1. Generate World (creates .sdf file with drones and particle emitters)
+python3 uav_deconfliction/src/gazebo_bridge.py --missions uav_deconfliction/data/missions.json --generate-world demoworld.sdf
+
+# 2. Run Playback
+# Use --speed to control playback rate (e.g., 0.1 for slow motion)
+python3 uav_deconfliction/src/gazebo_trajectory_player.py --world demoworld.sdf --missions uav_deconfliction/data/missions.json --speed 0.5
+```
