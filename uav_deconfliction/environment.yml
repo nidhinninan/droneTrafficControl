@@ -1,0 +1,12 @@
+name: UAS_traffic_cont
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.8
+  - numpy
+  - scipy
+  - matplotlib
+  - pip
+  - pip:
+    # Add any pip-only dependencies here if needed in the future
